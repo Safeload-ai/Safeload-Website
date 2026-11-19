@@ -3,10 +3,13 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import ScrollToTop from './components/ScrollToTop';
-import AboutUs from './pages/AboutUs';
 import Home from './pages/Home';
-import OurSolution from './pages/OurSolution';
-import JoinPilot from './pages/JoinPilot';
+import Platform from './pages/Platform';
+import HowItWorks from './pages/HowItWorks';
+import Solutions from './pages/Solutions';
+import Guardian from './pages/Guardian';
+import Partners from './pages/Partners';
+import About from './pages/About';
 
 function App() {
   return (
@@ -16,9 +19,12 @@ function App() {
       <main>
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/about" element={<AboutUs />} />
-          <Route path="/solution" element={<OurSolution />} />
-          <Route path="/join" element={<JoinPilot />} />
+          <Route path="/platform" element={<Platform />} />
+          <Route path="/how-it-works" element={<HowItWorks />} />
+          <Route path="/solutions" element={<Solutions />} />
+          <Route path="/guardian-ai" element={<Guardian />} />
+          <Route path="/partners" element={<Partners />} />
+          <Route path="/about" element={<About />} />
         </Routes>
       </main>
       <Footer />
