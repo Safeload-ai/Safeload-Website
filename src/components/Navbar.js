@@ -17,7 +17,7 @@ export default function Navbar() {
     <header className="site-header">
       <div className="site-header-inner">
         <Link to="/" className="site-logo" aria-label="SafeLoad AI home">
-          <img src="/safeload-lockup-reversed.svg" alt="SafeLoad" />
+          <img src="/safeload-logo-light.svg" alt="SafeLoad" />
         </Link>
 
         <button

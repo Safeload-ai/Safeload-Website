@@ -7,7 +7,9 @@ export default function Footer() {
       <div className="footer-inner">
         <div className="footer-top">
           <div className="footer-brand">
-            <Link to="/" className="footer-wordmark">SafeLoad</Link>
+            <Link to="/" aria-label="SafeLoad AI home" style={{ display: 'inline-flex' }}>
+              <img src="/safeload-logo-dark.svg" alt="SafeLoad" className="footer-logo" />
+            </Link>
             <span className="footer-tagline-strong">SafeLoad AI &middot; Trust at Every Handoff.</span>
             <p className="footer-tagline">Digital chain-of-custody technology for modern freight operations.</p>
           </div>

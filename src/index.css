@@ -261,7 +261,7 @@ a.btn-outline, .btn-outline { background: transparent; color: var(--on-dark); bo
 }
 .footer-top { display: flex; flex-wrap: wrap; gap: 48px; justify-content: space-between; }
 .footer-brand { flex: 1 1 300px; display: flex; flex-direction: column; gap: 14px; }
-.footer-wordmark { font-size: 20px; font-weight: 600; letter-spacing: -0.02em; color: var(--ink); }
+.footer-logo { height: 24px; width: auto; display: block; }
 .footer-tagline-strong { font-size: 16px; font-weight: 500; color: var(--ink); }
 .footer-tagline { font-size: 14px; line-height: 20px; color: var(--ink-muted); max-width: 320px; }
 .footer-nav {
