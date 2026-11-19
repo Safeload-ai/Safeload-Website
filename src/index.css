@@ -148,7 +148,7 @@ h1, h2, h3, h4 { font-weight: 500; letter-spacing: -0.02em; color: var(--ink); }
   transition: opacity .15s linear;
   font-family: var(--font-sans);
 }
-.btn:hover { opacity: 0.85; color: inherit; }
+.btn:hover { opacity: 0.85; }
 a.btn-light, .btn-light { background: var(--on-dark); color: var(--ink); }
 a.btn-dark, .btn-dark { background: var(--ink); color: var(--on-dark); }
 a.btn-outline, .btn-outline { background: transparent; color: var(--on-dark); border-color: rgba(255,255,255,0.28); }
