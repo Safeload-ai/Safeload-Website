@@ -86,10 +86,33 @@ export default function Home() {
             </div>
           </div>
 
-          <div style={{ flex: '1 1 380px', minWidth: 0, display: 'flex', flexDirection: 'column', gap: 12, alignItems: 'flex-end' }}>
-            {statusLabels.map((s) => (
-              <span key={s} className="eyebrow" style={{ textAlign: 'right' }}>{s}</span>
-            ))}
+          <div style={{ flex: '1 1 420px', minWidth: 0 }}>
+            <svg viewBox="0 0 520 420" width="100%" height="420" aria-hidden="true" style={{ display: 'block', overflow: 'visible' }}>
+              <path d="M40 360 L140 300 L260 300 L340 220 L420 160 L480 60" fill="none" stroke="#a3a3a3" strokeWidth="2" strokeDasharray="4 6" />
+              <path className="sl-draw" pathLength="1" d="M40 360 L140 300 L260 300 L340 220 L420 160 L480 60" fill="none" stroke="var(--accent)" strokeWidth="2" />
+
+              <circle r="3" fill="#a3a3a3">
+                <animateMotion dur="9s" repeatCount="indefinite" path="M40 360 L140 300 L260 300 L340 220 L420 160 L480 60" />
+              </circle>
+              <circle r="3" fill="#a3a3a3">
+                <animateMotion dur="13s" repeatCount="indefinite" begin="2s" path="M40 360 L140 300 L260 300 L340 220 L420 160 L480 60" />
+              </circle>
+
+              <g>
+                <rect className="sl-ping" x="34" y="354" width="12" height="12" fill="none" stroke="var(--accent)" strokeWidth="1" />
+                <rect x="34" y="354" width="12" height="12" fill="var(--accent)" />
+                <text x="54" y="368" fill="#ffffff" fontFamily="'JetBrains Mono', monospace" fontSize="12" letterSpacing="1">{statusLabels[0]}</text>
+              </g>
+              <g>
+                <rect className="sl-ping" x="334" y="214" width="12" height="12" fill="none" stroke="var(--accent)" strokeWidth="1" style={{ animationDelay: '1.2s' }} />
+                <rect x="334" y="214" width="12" height="12" fill="#000000" stroke="var(--accent)" strokeWidth="2" />
+                <text x="354" y="228" fill="#ffffff" fontFamily="'JetBrains Mono', monospace" fontSize="12" letterSpacing="1">{statusLabels[1]}</text>
+              </g>
+              <g>
+                <rect x="474" y="54" width="12" height="12" fill="#000000" stroke="#ffffff" strokeWidth="1.5" />
+                <text x="466" y="42" textAnchor="end" fill="#ffffff" fontFamily="'JetBrains Mono', monospace" fontSize="12" letterSpacing="1">{statusLabels[2]}</text>
+              </g>
+            </svg>
           </div>
         </div>
 
