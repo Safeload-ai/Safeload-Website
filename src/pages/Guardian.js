@@ -1,14 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { motion } from 'framer-motion';
 import CTABand from '../components/CTABand';
-
-const fadeUp = {
-  initial: { opacity: 0, y: 16 },
-  whileInView: { opacity: 1, y: 0 },
-  viewport: { once: true, amount: 0.3 },
-  transition: { duration: 0.5 },
-};
 
 const workflow = [
   { title: 'Hold affected authorization', desc: 'Material change detected: trailer mismatch.' },
@@ -31,7 +23,7 @@ export default function Guardian() {
             <p className="body-md">Record. Review. Respond.</p>
           </div>
 
-          <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} transition={{ duration: 0.5, delay: 0.1 }} style={{ flex: '1 1 380px', minWidth: 0 }}>
+          <div style={{ flex: '1 1 380px', minWidth: 0 }}>
             <div className="card" style={{ background: 'var(--surface-dark-alt)', borderColor: 'var(--line-dark)', color: '#fff' }}>
               <span className="eyebrow" style={{ color: 'var(--on-dark-muted)' }}>Exception review &middot; Conceptual</span>
               <div style={{ marginTop: 16, display: 'flex', flexDirection: 'column', gap: 12, fontSize: 14 }}>
@@ -46,28 +38,28 @@ export default function Guardian() {
                 ))}
               </div>
             </div>
-          </motion.div>
+          </div>
         </div>
       </section>
 
       <section className="section">
         <div className="container">
-          <motion.div {...fadeUp} className="section-head">
+          <div className="section-head">
             <span className="section-num">01 &mdash; Exception model</span>
             <h2 className="h-section">AI supports the decision. Authorization governs the action.</h2>
             <p className="body-lg">
               Guardian AI is being developed to connect shipment evidence, assist investigation, and coordinate responses. It does not replace the authority of parties responsible for approving material custody changes.
             </p>
             <span className="body-md" style={{ fontStyle: 'italic' }}>Illustrative future-state workflow</span>
-          </motion.div>
+          </div>
 
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: 16, marginBottom: 20 }}>
             {workflow.map((w, i) => (
-              <motion.div key={w.title} {...fadeUp} transition={{ ...fadeUp.transition, delay: i * 0.08 }} className="card">
+              <div key={w.title} className="card">
                 <span className="section-num">0{i + 1}</span>
                 <h3 className="h-card" style={{ fontSize: 16, marginBottom: 6 }}>{w.title}</h3>
                 <p className="body-md" style={{ fontSize: 13 }}>{w.desc}</p>
-              </motion.div>
+              </div>
             ))}
           </div>
 

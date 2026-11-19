@@ -65,6 +65,14 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
 }
 @keyframes slBlink { 0%, 100% { opacity: 1; } 50% { opacity: .25; } }
 
+@keyframes slCue {
+  0% { transform: scaleY(0); transform-origin: top; }
+  50% { transform: scaleY(1); transform-origin: top; }
+  50.1% { transform-origin: bottom; }
+  100% { transform: scaleY(0); transform-origin: bottom; }
+}
+.sl-cue { animation: slCue 2.4s linear infinite; }
+
 .sl-arr { display: inline-block; transition: transform .15s linear; }
 a:hover .sl-arr, button:hover .sl-arr { transform: translateX(4px); }
 

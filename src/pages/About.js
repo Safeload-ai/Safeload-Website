@@ -1,14 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { motion } from 'framer-motion';
 import CTABand from '../components/CTABand';
-
-const fadeUp = {
-  initial: { opacity: 0, y: 16 },
-  whileInView: { opacity: 1, y: 0 },
-  viewport: { once: true, amount: 0.3 },
-  transition: { duration: 0.5 },
-};
 
 const principles = [
   { title: 'Authorization comes first.', desc: 'Custody should change only in the way the responsible parties said it could.' },
@@ -55,7 +47,7 @@ export default function About() {
 
       <section className="section">
         <div className="container" style={{ display: 'flex', flexWrap: 'wrap', gap: 48 }}>
-          <motion.div {...fadeUp} style={{ flex: '1 1 440px', minWidth: 0 }}>
+          <div style={{ flex: '1 1 440px', minWidth: 0 }}>
             <span className="section-num">01 &mdash; Our story</span>
             <h2 className="h-section" style={{ marginBottom: 16 }}>SafeLoad AI was founded to close that gap.</h2>
             <p style={{ fontSize: 16, fontWeight: 500, marginBottom: 8 }}>Our mission</p>
@@ -63,27 +55,27 @@ export default function About() {
               Our mission is to make critical custody events verifiable, changes accountable, and freight operations more trustworthy.
             </p>
             <p className="body-md">We're starting with freight transportation and building toward a broader digital chain of custody across supply chains.</p>
-          </motion.div>
-          <motion.div {...fadeUp} transition={{ ...fadeUp.transition, delay: 0.1 }} style={{ flex: '1 1 320px', minWidth: 0 }}>
+          </div>
+          <div style={{ flex: '1 1 320px', minWidth: 0 }}>
             <div className="photo-placeholder">Photo &middot; Team or freight operations</div>
-          </motion.div>
+          </div>
         </div>
       </section>
 
       <section className="section subtle">
         <div className="container">
-          <motion.div {...fadeUp} className="section-head">
+          <div className="section-head">
             <span className="section-num">02 &mdash; What we believe</span>
             <h2 className="h-section">Principles behind the platform.</h2>
             <span className="body-md" style={{ fontStyle: 'italic', fontSize: 12.5 }}>Placeholder copy &mdash; confirm before launch</span>
-          </motion.div>
+          </div>
 
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: 1, background: 'var(--line)', border: '1px solid var(--line)' }}>
-            {principles.map((p, i) => (
-              <motion.div key={p.title} {...fadeUp} transition={{ ...fadeUp.transition, delay: (i % 4) * 0.05 }} className="card" style={{ background: '#fff' }}>
+            {principles.map((p) => (
+              <div key={p.title} className="card" style={{ background: '#fff' }}>
                 <h3 className="h-card" style={{ fontSize: 16, marginBottom: 8 }}>{p.title}</h3>
                 <p className="body-md" style={{ fontSize: 13 }}>{p.desc}</p>
-              </motion.div>
+              </div>
             ))}
           </div>
         </div>
@@ -91,21 +83,21 @@ export default function About() {
 
       <section className="section">
         <div className="container">
-          <motion.div {...fadeUp} className="section-head">
+          <div className="section-head">
             <span className="section-num">03 &mdash; Where we're headed</span>
             <h2 className="h-section">Starting with freight. Built for wherever goods change hands.</h2>
             <span className="body-md" style={{ fontStyle: 'italic', fontSize: 12.5 }}>Placeholder copy &mdash; confirm before launch</span>
-          </motion.div>
+          </div>
 
           <div style={{ display: 'flex', flexDirection: 'column', gap: 1, background: 'var(--line)', border: '1px solid var(--line)' }}>
-            {roadmap.map((r, i) => (
-              <motion.div key={r.title} {...fadeUp} transition={{ ...fadeUp.transition, delay: i * 0.06 }} style={{ background: '#fff', padding: '22px 26px', display: 'flex', gap: 20, alignItems: 'baseline', flexWrap: 'wrap' }}>
+            {roadmap.map((r) => (
+              <div key={r.title} style={{ background: '#fff', padding: '22px 26px', display: 'flex', gap: 20, alignItems: 'baseline', flexWrap: 'wrap' }}>
                 <span className="eyebrow accent" style={{ flex: '0 0 140px' }}>{r.label}</span>
                 <div>
                   <div style={{ fontSize: 16, fontWeight: 500, marginBottom: 4 }}>{r.title}</div>
                   <p className="body-md" style={{ fontSize: 13.5 }}>{r.desc}</p>
                 </div>
-              </motion.div>
+              </div>
             ))}
           </div>
         </div>
@@ -113,19 +105,19 @@ export default function About() {
 
       <section className="section subtle">
         <div className="container">
-          <motion.div {...fadeUp} className="section-head">
+          <div className="section-head">
             <span className="section-num">04 &mdash; Team</span>
             <h2 className="h-section">The people building SafeLoad AI.</h2>
             <span className="body-md" style={{ fontStyle: 'italic', fontSize: 12.5 }}>Placeholder &mdash; add team names, roles and photos</span>
-          </motion.div>
+          </div>
 
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: 24 }}>
             {team.map((t, i) => (
-              <motion.div key={i} {...fadeUp} transition={{ ...fadeUp.transition, delay: i * 0.06 }}>
+              <div key={i}>
                 <div className="photo-placeholder" style={{ aspectRatio: '1 / 1', marginBottom: 12 }}>Photo &middot; Headshot</div>
                 <div style={{ fontSize: 15, fontWeight: 500 }}>{t.name}</div>
                 <div className="body-md" style={{ fontSize: 13 }}>{t.role}</div>
-              </motion.div>
+              </div>
             ))}
           </div>
         </div>
@@ -133,14 +125,14 @@ export default function About() {
 
       <section className="section">
         <div className="container">
-          <motion.div {...fadeUp} className="section-head">
+          <div className="section-head">
             <span className="section-num">05 &mdash; Contact</span>
             <h2 className="h-section">Talk to us.</h2>
             <p className="body-lg">
               Questions about SafeLoad AI, the design partner program, or a custody challenge in your operation? Get in touch.
             </p>
             <Link to="/partners#inquiry" className="btn btn-dark" style={{ alignSelf: 'flex-start' }}>Request a Conversation <span className="sl-arr" aria-hidden="true">→</span></Link>
-          </motion.div>
+          </div>
 
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(160px, 1fr))', gap: 20 }}>
             {contacts.map((c) => (
