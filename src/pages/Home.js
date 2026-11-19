@@ -38,11 +38,57 @@ const todaySteps = [
 const safeloadSteps = ['Shipper', 'Broker', 'Carrier', 'Receiver'];
 
 const pillars = [
-  { title: 'Authorize', desc: 'Define who is permitted to handle a shipment and what conditions must be met.' },
-  { title: 'Verify', desc: 'Confirm identity, equipment, and shipment information at critical custody events.' },
-  { title: 'Monitor', desc: 'Detect movement anomalies, mismatches, and unexpected changes.' },
-  { title: 'Control', desc: 'Require appropriate approval before material custody instructions change.' },
-  { title: 'Record', desc: 'Connect custody events, documents, approvals, and exceptions into one history.' },
+  {
+    title: 'Authorize',
+    desc: 'Define who is permitted to handle a shipment and what conditions must be met.',
+    icon: (
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <path d="M12 3l7 3v5c0 4.5-3 8.2-7 10-4-1.8-7-5.5-7-10V6z" stroke="#000" strokeWidth="1.5" />
+        <path d="M9 12l2 2 4-4" stroke="#000" strokeWidth="1.5" />
+      </svg>
+    ),
+  },
+  {
+    title: 'Verify',
+    desc: 'Confirm identity, equipment, and shipment information at critical custody events.',
+    icon: (
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <rect x="3" y="5" width="18" height="14" stroke="#000" strokeWidth="1.5" />
+        <circle cx="9" cy="11" r="2.5" stroke="#000" strokeWidth="1.5" />
+        <path d="M5.5 17c.6-1.8 2-2.8 3.5-2.8s2.9 1 3.5 2.8M14 10h4M14 13h3" stroke="#000" strokeWidth="1.5" />
+      </svg>
+    ),
+  },
+  {
+    title: 'Monitor',
+    desc: 'Detect movement anomalies, mismatches, and unexpected changes.',
+    icon: (
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <path d="M12 21s-6-5.5-6-10a6 6 0 0112 0c0 4.5-6 10-6 10z" stroke="#000" strokeWidth="1.5" />
+        <rect x="10.5" y="9.5" width="3" height="3" stroke="#000" strokeWidth="1.5" />
+      </svg>
+    ),
+  },
+  {
+    title: 'Control',
+    desc: 'Require appropriate approval before material custody instructions change.',
+    icon: (
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <rect x="5" y="10" width="14" height="11" stroke="#000" strokeWidth="1.5" />
+        <path d="M8 10V7a4 4 0 018 0v3M12 14v3" stroke="#000" strokeWidth="1.5" />
+      </svg>
+    ),
+  },
+  {
+    title: 'Record',
+    desc: 'Connect custody events, documents, approvals, and exceptions into one history.',
+    icon: (
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <path d="M5 3h14v18H5z" stroke="#000" strokeWidth="1.5" />
+        <path d="M8 8h8M8 12h8M8 16h5" stroke="#000" strokeWidth="1.5" />
+      </svg>
+    ),
+  },
 ];
 
 const journey = [
@@ -60,16 +106,42 @@ const roles = [
 ];
 
 const opsFeatures = [
-  { title: 'Mobile-first verification', desc: 'Simple workflows for drivers and receiving parties.' },
-  { title: 'Fast by design', desc: 'Verification designed to minimize operational delays.' },
-  { title: 'Works alongside your systems', desc: 'Built to complement existing transportation workflows.' },
-  { title: 'No unnecessary onboarding', desc: 'App-light participation for external logistics partners.' },
+  {
+    title: 'Mobile-first verification', desc: 'Simple workflows for drivers and receiving parties.',
+    icon: <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="7" y="2.5" width="10" height="19" stroke="#000" strokeWidth="1.5" /><path d="M11 18h2" stroke="#000" strokeWidth="1.5" /></svg>,
+  },
+  {
+    title: 'Fast by design', desc: 'Verification designed to minimize operational delays.',
+    icon: <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="13" r="8" stroke="#000" strokeWidth="1.5" /><path d="M12 9v4l3 2M10 2h4" stroke="#000" strokeWidth="1.5" /></svg>,
+  },
+  {
+    title: 'Works alongside your systems', desc: 'Built to complement existing transportation workflows.',
+    icon: <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M10 14l4-4M8.5 11.5l-2 2a3 3 0 004.2 4.2l2-2M15.5 12.5l2-2a3 3 0 00-4.2-4.2l-2 2" stroke="#000" strokeWidth="1.5" /></svg>,
+  },
+  {
+    title: 'No unnecessary onboarding', desc: 'App-light participation for external logistics partners.',
+    icon: <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 12h11M11 8l4 4-4 4M15 4h5v16h-5" stroke="#000" strokeWidth="1.5" /></svg>,
+  },
 ];
 
 const visionChain = ['Source', 'Produce', 'Store', 'Move', 'Receive'];
 
+function PhotoPlaceholder({ caption }) {
+  return (
+    <div className="photo-placeholder">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <rect x="3" y="7" width="18" height="13" stroke="#8f8f8f" strokeWidth="1.5" />
+        <path d="M8 7l1.5-3h5L16 7" stroke="#8f8f8f" strokeWidth="1.5" />
+        <circle cx="12" cy="13.5" r="3.5" stroke="#8f8f8f" strokeWidth="1.5" />
+      </svg>
+      <span>Photo &middot; {caption}</span>
+    </div>
+  );
+}
+
 export default function Home() {
   const recede = useRecedeProgress();
+  const [gapTab, setGapTab] = useState('today');
 
   return (
     <>
@@ -163,38 +235,66 @@ export default function Home() {
             <p className="body-lg">
               Today's supply chains rely on disconnected systems to book, move, monitor, and deliver freight. But tracking a shipment doesn't necessarily establish who was authorized to take it, whether a handoff was approved, or who accepted it at delivery.
             </p>
-            <p className="body-md" style={{ color: 'var(--ink)' }}>
+            <p style={{ margin: 0, fontSize: 22, lineHeight: '32px', color: 'var(--ink)', fontWeight: 500 }}>
               The gap isn't simply visibility. It's knowing whether custody changed the way it was supposed to.
             </p>
           </div>
 
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: 32 }}>
-            <div>
-              <span className="eyebrow" style={{ marginBottom: 16, display: 'block' }}>Today</span>
-              <div className="grid" style={{ gridTemplateColumns: '1fr' }}>
-                {todaySteps.map((s) => (
-                  <div key={s.role} style={{ padding: '18px 20px' }}>
-                    <div style={{ fontSize: 14, fontWeight: 600 }}>{s.role}</div>
-                    <div className="body-md" style={{ fontSize: 13 }}>{s.event} &middot; {s.detail}</div>
-                  </div>
-                ))}
-              </div>
-              <p className="body-md" style={{ fontSize: 13, marginTop: 14 }}>
-                <strong style={{ color: 'var(--ink)' }}>Authorization gap</strong> &mdash; evidence sits in separate systems.
-              </p>
-            </div>
+          <div style={{ display: 'flex', gap: 24, borderBottom: '1px solid var(--line)', marginBottom: 0 }}>
+            <button
+              type="button" role="tab" aria-selected={gapTab === 'today'} onClick={() => setGapTab('today')}
+              className="sl-tab"
+              style={{ font: 'inherit', fontSize: 15, fontWeight: 500, background: 'none', border: 0, borderBottom: `2px solid ${gapTab === 'today' ? '#000' : 'transparent'}`, color: gapTab === 'today' ? '#000' : 'var(--ink-muted)', padding: '12px 4px', minHeight: 44, cursor: 'pointer' }}
+            >Today</button>
+            <button
+              type="button" role="tab" aria-selected={gapTab === 'after'} onClick={() => setGapTab('after')}
+              className="sl-tab"
+              style={{ font: 'inherit', fontSize: 15, fontWeight: 500, background: 'none', border: 0, borderBottom: `2px solid ${gapTab === 'after' ? '#000' : 'transparent'}`, color: gapTab === 'after' ? '#000' : 'var(--ink-muted)', padding: '12px 4px', minHeight: 44, cursor: 'pointer' }}
+            >With SafeLoad</button>
+          </div>
 
-            <div>
-              <span className="eyebrow accent" style={{ marginBottom: 16, display: 'block' }}>With SafeLoad</span>
-              <div className="grid" style={{ gridTemplateColumns: '1fr' }}>
-                {safeloadSteps.map((s) => (
-                  <div key={s} style={{ padding: '18px 20px', fontSize: 14, fontWeight: 600 }}>{s}</div>
-                ))}
+          <div role="tabpanel" style={{ border: '1px solid var(--line)', padding: 32 }}>
+            {gapTab === 'today' ? (
+              <div>
+                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(170px, 1fr))', gap: 32 }}>
+                  {todaySteps.map((s) => (
+                    <div key={s.role} style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
+                      <div style={{ border: '1px solid #8f8f8f', padding: 16, display: 'flex', flexDirection: 'column', gap: 4, background: '#fff' }}>
+                        <span className="eyebrow">{s.role}</span>
+                        <span style={{ fontSize: 20, lineHeight: '28px', fontWeight: 500 }}>{s.event}</span>
+                      </div>
+                      <span style={{ alignSelf: 'flex-start', border: '1px dashed #8f8f8f', padding: '4px 8px', fontFamily: 'var(--font-mono)', fontSize: 12, color: 'var(--ink-muted)' }}>{s.detail}</span>
+                    </div>
+                  ))}
+                </div>
+                <div style={{ marginTop: 24, display: 'flex', alignItems: 'center', gap: 10, borderTop: '1px solid var(--line)', paddingTop: 16, flexWrap: 'wrap' }}>
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <path d="M12 4l9 16H3z" stroke="#8a5300" strokeWidth="1.5" />
+                    <path d="M12 10v4M12 16.5v1" stroke="#8a5300" strokeWidth="1.5" />
+                  </svg>
+                  <span style={{ fontFamily: 'var(--font-mono)', fontSize: 12, fontWeight: 500, letterSpacing: '0.08em', textTransform: 'uppercase', color: '#8a5300' }}>Authorization gap</span>
+                  <span style={{ fontSize: 14, color: 'var(--ink-muted)' }}>Evidence sits in separate systems.</span>
+                </div>
               </div>
-              <p className="body-md" style={{ fontSize: 13, marginTop: 14 }}>
-                <strong style={{ color: 'var(--brand-green)' }}>SafeLoad custody record</strong> &mdash; Authorization &middot; Verification &middot; Evidence &middot; Exceptions &middot; Acceptance
-              </p>
-            </div>
+            ) : (
+              <div>
+                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(170px, 1fr))', gap: 32 }}>
+                  {safeloadSteps.map((s) => (
+                    <div key={s} style={{ border: '1px solid #000', padding: 16, display: 'flex', flexDirection: 'column', gap: 4, background: '#fff' }}>
+                      <span className="eyebrow">{s}</span>
+                      <span style={{ fontSize: 20, lineHeight: '28px', fontWeight: 500 }}>{{ Shipper: 'Order', Broker: 'Booking', Carrier: 'Movement', Receiver: 'Delivery' }[s]}</span>
+                    </div>
+                  ))}
+                </div>
+                <div style={{ marginTop: 32, background: '#000', color: '#fff', padding: '20px 24px', display: 'flex', flexWrap: 'wrap', gap: '12px 24px', alignItems: 'center', justifyContent: 'space-between' }}>
+                  <span style={{ display: 'inline-flex', alignItems: 'center', gap: 8 }}>
+                    <span className="sl-live" aria-hidden="true" />
+                    <span style={{ fontSize: 18, fontWeight: 500 }}>SafeLoad custody record</span>
+                  </span>
+                  <span style={{ fontFamily: 'var(--font-mono)', fontSize: 13, letterSpacing: '0.04em', color: '#d4d4d4' }}>Authorization &middot; Verification &middot; Evidence &middot; Exceptions &middot; Acceptance</span>
+                </div>
+              </div>
+            )}
           </div>
         </div>
       </section>
@@ -206,16 +306,19 @@ export default function Home() {
             <span className="section-num">03 &mdash; The SafeLoad answer</span>
             <h2 className="h-section">Control custody. Not just movement.</h2>
             <p className="body-lg">
-              SafeLoad is designed to connect the people, equipment, shipment details, and decisions behind each critical freight handoff. The shipment moves. Accountability moves with it.
+              SafeLoad is designed to connect the people, equipment, shipment details, and decisions behind each critical freight handoff.
+            </p>
+            <p style={{ margin: 0, fontSize: 22, lineHeight: '32px', color: 'var(--ink)', fontWeight: 500 }}>
+              The shipment moves. Accountability moves with it.
             </p>
           </div>
 
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: 1, background: 'var(--line)', border: '1px solid var(--line)' }}>
-            {pillars.map((p, i) => (
-              <div key={p.title} className="card" style={{ background: '#fff' }}>
-                <span className="section-num">0{i + 1}</span>
-                <h3 className="h-card" style={{ marginBottom: 8 }}>{p.title}</h3>
-                <p className="body-md" style={{ fontSize: 13.5 }}>{p.desc}</p>
+            {pillars.map((p) => (
+              <div key={p.title} className="sl-card" style={{ background: '#fff', padding: 28, display: 'flex', flexDirection: 'column', gap: 14 }}>
+                {p.icon}
+                <span style={{ fontSize: 20, lineHeight: '28px', fontWeight: 500 }}>{p.title}</span>
+                <p style={{ margin: 0, fontSize: 15, lineHeight: '22px', color: 'var(--ink-muted)' }}>{p.desc}</p>
               </div>
             ))}
           </div>
@@ -225,66 +328,119 @@ export default function Home() {
       {/* 04 — How it works */}
       <section className="section">
         <div className="container">
-          <div className="section-head">
-            <span className="section-num">04 &mdash; How it works</span>
-            <h2 className="h-section">One shipment. A connected chain of custody.</h2>
-            <Link to="/how-it-works" className="eyebrow accent">See how it works <span className="sl-arr" aria-hidden="true">→</span></Link>
+          <div style={{ display: 'flex', flexWrap: 'wrap', gap: 24, alignItems: 'flex-end', justifyContent: 'space-between', marginBottom: 48 }}>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 16, maxWidth: 760 }}>
+              <span className="section-num">04 &mdash; How it works</span>
+              <h2 className="h-section">One shipment. A connected chain of custody.</h2>
+            </div>
+            <Link to="/how-it-works" className="btn btn-dark">See how it works <span className="sl-arr" aria-hidden="true">→</span></Link>
           </div>
 
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))', gap: 16 }}>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(170px, 1fr))', gap: 16 }}>
             {journey.map((j, i) => (
-              <div key={j.title} className="card">
-                <span className="section-num">0{i + 1}</span>
-                <h3 className="h-card" style={{ marginBottom: 4 }}>{j.title}</h3>
-                <p className="body-md" style={{ fontSize: 13 }}>{j.when}</p>
-              </div>
+              <Link key={j.title} to="/how-it-works" className="sl-card" style={{ position: 'relative', display: 'flex', flexDirection: 'column', gap: 8, padding: 20, border: '1px solid #000', background: '#fff', color: '#000', textDecoration: 'none' }}>
+                <span aria-hidden="true" style={{ width: 12, height: 12, background: '#000', display: 'block' }} />
+                <span style={{ fontFamily: 'var(--font-mono)', fontSize: 12, color: 'var(--ink-muted)' }}>0{i + 1}</span>
+                <span style={{ fontSize: 20, fontWeight: 500 }}>{j.title}</span>
+                <span style={{ fontFamily: 'var(--font-mono)', fontSize: 11, letterSpacing: '0.06em', textTransform: 'uppercase', color: 'var(--ink-muted)' }}>{j.when}</span>
+                {i < journey.length - 1 && (
+                  <span aria-hidden="true" style={{ position: 'absolute', right: -17, top: 31, width: 16, height: 1, background: '#000' }}>
+                    <span className="sl-packet" style={{ animationDelay: `${i * 0.5}s` }} />
+                  </span>
+                )}
+              </Link>
             ))}
           </div>
         </div>
       </section>
 
       {/* 05 — Controlled exceptions */}
-      <section className="section on-dark">
-        <div className="container">
-          <div className="section-head">
-            <span className="section-num" style={{ color: 'var(--on-dark-muted)' }}>05 &mdash; Controlled exceptions</span>
+      <section className="section">
+        <div className="container" style={{ display: 'flex', flexWrap: 'wrap', gap: 64, alignItems: 'flex-start' }}>
+          <div style={{ flex: '1 1 460px', minWidth: 0, display: 'flex', flexDirection: 'column', gap: 16 }}>
+            <span className="section-num">05 &mdash; Controlled exceptions</span>
             <h2 className="h-section">Changes happen. Unauthorized changes shouldn't.</h2>
             <p className="body-lg">
               A driver gets replaced. A trailer changes. A destination is amended. A seal doesn't match. These events may be legitimate&mdash;but they should never silently rewrite authorized custody instructions.
             </p>
-            <p className="body-md">
+            <p className="body-lg">
               Guardian AI is being developed to investigate exceptions and support controlled decisions. Material changes remain subject to the authorization rules established by responsible parties.
             </p>
             <Link to="/guardian-ai" className="eyebrow accent">How Guardian AI works <span className="sl-arr" aria-hidden="true">→</span></Link>
           </div>
 
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: 16 }}>
-            {['Material change detected', 'Affected authorization held', 'Guardian AI reviews evidence', 'Approved or escalated'].map((t, i) => (
-              <div key={t} className="card" style={{ background: 'var(--surface-dark-alt)', borderColor: 'var(--line-dark)' }}>
-                <span className="section-num" style={{ color: 'var(--on-dark-muted)' }}>0{i + 1}</span>
-                <p style={{ fontSize: 14, fontWeight: 500 }}>{t}</p>
+          <div style={{ flex: '1 1 460px', minWidth: 0, display: 'flex', flexDirection: 'column', gap: 12 }}>
+            <div style={{ background: '#fff', border: '1px solid #8f8f8f', padding: '16px 20px', display: 'flex', flexDirection: 'column', gap: 6 }}>
+              <span style={{ fontSize: 17, lineHeight: '24px', fontWeight: 500 }}>Material change detected</span>
+              <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6 }}>
+                {['Driver replaced', 'Trailer changed', 'Destination amended', 'Seal mismatch'].map((t) => (
+                  <span key={t} style={{ border: '1px solid var(--line)', padding: '2px 8px', fontFamily: 'var(--font-mono)', fontSize: 11, color: 'var(--ink-muted)' }}>{t}</span>
+                ))}
               </div>
-            ))}
+            </div>
+
+            <div aria-hidden="true" style={{ position: 'relative', width: 1, height: 28, background: '#000', margin: '0 auto' }}>
+              <span className="sl-drop" />
+            </div>
+
+            <div style={{ background: '#fff', border: '1px solid #8f8f8f', padding: '16px 20px', display: 'flex', flexDirection: 'column', gap: 6 }}>
+              <span style={{ fontSize: 17, lineHeight: '24px', fontWeight: 500 }}>Affected authorization held per policy</span>
+              <span style={{ display: 'inline-flex', alignItems: 'center', gap: 6, fontFamily: 'var(--font-mono)', fontSize: 12, fontWeight: 500, letterSpacing: '0.08em', textTransform: 'uppercase', color: '#8a5300' }}>
+                <span aria-hidden="true" style={{ width: 6, height: 6, background: '#8a5300', display: 'inline-block' }} />Held
+              </span>
+            </div>
+
+            <div aria-hidden="true" style={{ position: 'relative', width: 1, height: 28, background: '#000', margin: '0 auto' }}>
+              <span className="sl-drop" style={{ animationDelay: '0.6s' }} />
+            </div>
+
+            <div style={{ background: '#000', color: '#fff', border: '1px solid #000', padding: '16px 20px', display: 'flex', flexDirection: 'column', gap: 6 }}>
+              <span style={{ fontSize: 17, lineHeight: '24px', fontWeight: 500 }}>Guardian AI reviews evidence and context</span>
+              <span style={{ fontFamily: 'var(--font-mono)', fontSize: 12, color: 'var(--on-dark-muted)' }}>Supports the decision. Does not make it.</span>
+            </div>
+
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, minmax(0, 1fr))', gap: 16, marginTop: 8 }}>
+              <div style={{ border: '1px solid #008000', borderTop: '3px solid #008000', padding: 16, display: 'flex', flexDirection: 'column', gap: 6, background: '#fff' }}>
+                <span style={{ display: 'inline-flex', alignItems: 'center', gap: 6, fontFamily: 'var(--font-mono)', fontSize: 12, fontWeight: 500, letterSpacing: '0.08em', textTransform: 'uppercase', color: '#008000' }}>
+                  <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M2 6.5l2.5 2.5L10 3" stroke="#008000" strokeWidth="1.5" /></svg>
+                  Approved
+                </span>
+                <span style={{ fontSize: 16, fontWeight: 500 }}>Reauthorize + record</span>
+              </div>
+              <div style={{ border: '1px solid #b3261e', borderTop: '3px solid #b3261e', padding: 16, display: 'flex', flexDirection: 'column', gap: 6, background: '#fff' }}>
+                <span style={{ display: 'inline-flex', alignItems: 'center', gap: 6, fontFamily: 'var(--font-mono)', fontSize: 12, fontWeight: 500, letterSpacing: '0.08em', textTransform: 'uppercase', color: '#b3261e' }}>
+                  <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M3 3l6 6M9 3l-6 6" stroke="#b3261e" strokeWidth="1.5" /></svg>
+                  Not approved
+                </span>
+                <span style={{ fontSize: 16, fontWeight: 500 }}>Hold + escalate</span>
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
       {/* 06 — Who it's for */}
-      <section className="section">
+      <section className="section subtle">
         <div className="container">
           <div className="section-head">
             <span className="section-num">06 &mdash; Who it's for</span>
             <h2 className="h-section">Different roles. One standard of accountability.</h2>
           </div>
 
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: 32 }}>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: 24 }}>
             {roles.map((r) => (
-              <div key={r.name}>
-                <div className="photo-placeholder" style={{ marginBottom: 18 }}>Photo &middot; {r.photo}</div>
-                <span className="eyebrow accent">{r.name}</span>
-                <h3 className="h-card" style={{ margin: '6px 0 10px' }}>{r.tag}</h3>
-                <p className="body-md" style={{ fontSize: 13.5, marginBottom: 14 }}>{r.desc}</p>
-                <Link to="/solutions" className="eyebrow accent">{r.cta} <span className="sl-arr" aria-hidden="true">→</span></Link>
+              <div key={r.name} className="sl-card" style={{ border: '1px solid var(--line)', display: 'flex', flexDirection: 'column', background: '#fff' }}>
+                <div className="sl-photo" style={{ aspectRatio: '4 / 3', overflow: 'hidden', background: 'var(--surface-subtle)', borderBottom: '1px solid var(--line)' }}>
+                  <PhotoPlaceholder caption={r.photo} />
+                </div>
+                <div style={{ padding: 24, display: 'flex', flexDirection: 'column', gap: 12, flexGrow: 1 }}>
+                  <span className="eyebrow">{r.name}</span>
+                  <h3 style={{ margin: 0, fontSize: 24, lineHeight: '32px', fontWeight: 500 }}>{r.tag}</h3>
+                  <p style={{ margin: 0, fontSize: 15, lineHeight: '22px', color: 'var(--ink-muted)' }}>{r.desc}</p>
+                  <div style={{ marginTop: 'auto' }}>
+                    <Link to="/solutions" className="eyebrow accent">{r.cta} <span className="sl-arr" aria-hidden="true">→</span></Link>
+                  </div>
+                </div>
               </div>
             ))}
           </div>
@@ -292,19 +448,20 @@ export default function Home() {
       </section>
 
       {/* 07 — Built for operations */}
-      <section className="section subtle">
+      <section className="section">
         <div className="container">
-          <div className="section-head center">
+          <div className="section-head">
             <span className="section-num">07 &mdash; Built for operations</span>
             <h2 className="h-section">Stronger controls shouldn't mean harder work.</h2>
             <p className="body-lg">SafeLoad is designed around the realities of transportation operations.</p>
           </div>
 
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: 16 }}>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: 32 }}>
             {opsFeatures.map((f) => (
-              <div key={f.title} className="card">
-                <h3 className="h-card" style={{ fontSize: 15, marginBottom: 6 }}>{f.title}</h3>
-                <p className="body-md" style={{ fontSize: 12.5 }}>{f.desc}</p>
+              <div key={f.title} style={{ paddingTop: 24, borderTop: '1px solid #000', display: 'flex', flexDirection: 'column', gap: 12 }}>
+                {f.icon}
+                <span style={{ fontSize: 18, lineHeight: '26px', fontWeight: 500 }}>{f.title}</span>
+                <p style={{ margin: 0, fontSize: 15, lineHeight: '22px', color: 'var(--ink-muted)' }}>{f.desc}</p>
               </div>
             ))}
           </div>
@@ -315,28 +472,51 @@ export default function Home() {
       <section className="section">
         <div className="container">
           <div className="section-head">
-            <span className="section-num">08 &mdash; Long-term vision</span>
+            <span className="eyebrow" style={{ alignSelf: 'flex-start', border: '1px solid #000', padding: '4px 10px' }}>08 &mdash; Long-term vision</span>
             <h2 className="h-section">From freight custody to supply-chain trust.</h2>
             <p className="body-lg">
               Every product moves through suppliers, manufacturers, transportation partners, facilities, and customers. Every transfer creates a new question of authorization and accountability.
             </p>
-            <p className="body-md">
-              SafeLoad's vision is to connect those moments into a trusted digital chain of custody&mdash;supporting stronger governance, clearer compliance evidence, and more intelligent supply-chain operations. We're starting with freight. The opportunity extends wherever goods change hands.
+            <p className="body-lg">
+              SafeLoad's vision is to connect those moments into a trusted digital chain of custody&mdash;supporting stronger governance, clearer compliance evidence, and more intelligent supply-chain operations.
+            </p>
+            <p style={{ margin: 0, fontSize: 22, lineHeight: '32px', color: 'var(--ink)' }}>
+              We're starting with freight. The opportunity extends wherever goods change hands.
             </p>
           </div>
 
-          <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8, alignItems: 'center' }}>
-            {visionChain.map((v, i) => (
-              <React.Fragment key={v}>
-                <div className="card" style={{ flex: '1 1 120px', textAlign: 'center', padding: '20px 16px' }}>
-                  {i === 2 && <span className="eyebrow accent" style={{ display: 'block', marginBottom: 6 }}>Starting here</span>}
-                  <span style={{ fontSize: 14, fontWeight: 600 }}>{v}</span>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(150px, 1fr))', gap: 16, marginBottom: 24 }}>
+            {visionChain.map((v, i) => {
+              const isStart = v === 'Move';
+              return (
+                <div
+                  key={v}
+                  style={{
+                    position: 'relative', padding: '18px 16px', display: 'flex', flexDirection: 'column', gap: 6,
+                    background: isStart ? '#000' : '#fff', color: isStart ? '#fff' : 'inherit',
+                    border: isStart ? '1px solid #000' : '1px dashed #8f8f8f',
+                  }}
+                >
+                  {isStart ? (
+                    <span style={{ display: 'inline-flex', alignItems: 'center', gap: 6, fontFamily: 'var(--font-mono)', fontSize: 11, letterSpacing: '0.08em', textTransform: 'uppercase', color: 'var(--accent)' }}>
+                      <span className="sl-live" aria-hidden="true" style={{ width: 6, height: 6 }} />Starting here
+                    </span>
+                  ) : (
+                    <span style={{ fontFamily: 'var(--font-mono)', fontSize: 11, letterSpacing: '0.08em', textTransform: 'uppercase', color: 'var(--ink-muted)' }}>0{i + 1}</span>
+                  )}
+                  <span style={{ fontSize: 20, fontWeight: 500 }}>{v}</span>
+                  {i < visionChain.length - 1 && (
+                    <span aria-hidden="true" style={{ position: 'absolute', right: -17, top: '50%', width: 16, height: 1, background: '#8f8f8f' }} />
+                  )}
                 </div>
-                {i < visionChain.length - 1 && <span aria-hidden="true" style={{ color: 'var(--ink-faint)' }}>&rarr;</span>}
-              </React.Fragment>
-            ))}
+              );
+            })}
           </div>
-          <p className="body-md" style={{ fontSize: 13, marginTop: 16 }}>Shared custody history &mdash; one record wherever goods change hands.</p>
+
+          <div style={{ border: '1px solid #000', padding: '14px 20px', display: 'flex', flexWrap: 'wrap', gap: '8px 24px', justifyContent: 'space-between', alignItems: 'center' }}>
+            <span style={{ fontSize: 16, fontWeight: 500 }}>Shared custody history</span>
+            <span style={{ fontFamily: 'var(--font-mono)', fontSize: 12, color: 'var(--ink-muted)' }}>One record wherever goods change hands</span>
+          </div>
         </div>
       </section>
 
