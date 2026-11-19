@@ -1,6 +1,26 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import CTABand from '../components/CTABand';
+
+const RECEDE_RANGE = 800;
+
+function useRecedeProgress() {
+  const [progress, setProgress] = useState(0);
+  useEffect(() => {
+    let ticking = false;
+    const onScroll = () => {
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(() => {
+        setProgress(Math.min(1, Math.max(0, window.scrollY / RECEDE_RANGE)));
+        ticking = false;
+      });
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
+  return progress;
+}
 
 const statusLabels = [
   'Origin release verified',
@@ -49,11 +69,20 @@ const opsFeatures = [
 const visionChain = ['Source', 'Produce', 'Store', 'Move', 'Receive'];
 
 export default function Home() {
+  const recede = useRecedeProgress();
+
   return (
     <>
       <section className="hero-section">
         <div className="hero-grid-bg" aria-hidden="true" />
-        <div className="hero-inner" style={{ alignItems: 'center', position: 'relative' }}>
+        <div
+          className="hero-inner"
+          style={{
+            alignItems: 'center',
+            position: 'relative',
+            transform: `translateY(${-48 * recede}px) scale(${1 - 0.03 * recede})`,
+          }}
+        >
           <div className="hero-copy" style={{ flex: '0 1 660px' }}>
             <div className="hero-eyebrow-row">
               <span className="sl-live" aria-hidden="true" />
