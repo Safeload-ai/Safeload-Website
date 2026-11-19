@@ -1,14 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { motion, AnimatePresence } from 'framer-motion';
 import CTABand from '../components/CTABand';
-
-const fadeUp = {
-  initial: { opacity: 0, y: 16 },
-  whileInView: { opacity: 1, y: 0 },
-  viewport: { once: true, amount: 0.3 },
-  transition: { duration: 0.5 },
-};
 
 const STAGES = [
   { title: 'Authorize', when: 'Before pickup', checks: ['Approved parties and conditions are defined', 'Pickup and delivery requirements are set', 'Authority to approve changes is established'] },
@@ -35,7 +27,7 @@ export default function HowItWorks() {
             </p>
             <div className="hero-actions">
               <Link to="/partners" className="btn btn-light">Become a Design Partner <span className="sl-arr" aria-hidden="true">→</span></Link>
-              <Link to="/platform" className="btn btn-outline">Explore the Platform <span className="sl-arr" aria-hidden="true">→</span></Link>
+              <Link to="/platform" className="btn btn-outline">Explore the Platform</Link>
             </div>
           </div>
         </div>
@@ -43,11 +35,11 @@ export default function HowItWorks() {
 
       <section className="section">
         <div className="container">
-          <motion.div {...fadeUp} className="section-head">
+          <div className="section-head">
             <span className="section-num">01 &mdash; The custody journey</span>
             <h2 className="h-section">One shipment. A connected chain of custody.</h2>
             <p className="body-md">Select a stage to see what SafeLoad checks.</p>
-          </motion.div>
+          </div>
 
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(140px, 1fr))', gap: 1, background: 'var(--line)', border: '1px solid var(--line)', marginBottom: 32 }}>
             {STAGES.map((s, i) => (
@@ -77,25 +69,23 @@ export default function HowItWorks() {
             </button>
           </div>
 
-          <AnimatePresence mode="wait">
-            <motion.div key={idx} initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }} transition={{ duration: 0.25 }}>
-              <span className="eyebrow" style={{ marginBottom: 12, display: 'block' }}>Checks</span>
-              <ol style={{ listStyle: 'none', margin: 0, padding: 0, maxWidth: 640 }}>
-                {stage.checks.map((c, i) => (
-                  <li key={c} style={{ display: 'flex', gap: 16, alignItems: 'baseline', padding: '14px 0', borderTop: '1px solid var(--line)' }}>
-                    <span className="section-num" style={{ marginBottom: 0, color: 'var(--brand-green)' }}>0{i + 1}</span>
-                    <span style={{ fontSize: 16, lineHeight: '24px' }}>{c}</span>
-                  </li>
-                ))}
-              </ol>
-            </motion.div>
-          </AnimatePresence>
+          <div>
+            <span className="eyebrow" style={{ marginBottom: 12, display: 'block' }}>Checks</span>
+            <ol style={{ listStyle: 'none', margin: 0, padding: 0, maxWidth: 640 }}>
+              {stage.checks.map((c, i) => (
+                <li key={c} style={{ display: 'flex', gap: 16, alignItems: 'baseline', padding: '14px 0', borderTop: '1px solid var(--line)' }}>
+                  <span className="section-num" style={{ marginBottom: 0, color: 'var(--brand-green)' }}>0{i + 1}</span>
+                  <span style={{ fontSize: 16, lineHeight: '24px' }}>{c}</span>
+                </li>
+              ))}
+            </ol>
+          </div>
         </div>
       </section>
 
       <section className="section on-dark">
         <div className="container">
-          <motion.div {...fadeUp} className="section-head">
+          <div className="section-head">
             <span className="section-num" style={{ color: 'var(--on-dark-muted)' }}>02 &mdash; When something changes</span>
             <h2 className="h-section">Changes happen. Unauthorized changes shouldn't.</h2>
             <p className="body-lg">
@@ -105,7 +95,7 @@ export default function HowItWorks() {
               <Link to="/guardian-ai" className="btn btn-outline">How Guardian AI works <span className="sl-arr" aria-hidden="true">→</span></Link>
               <Link to="/platform" className="btn btn-outline">See the platform <span className="sl-arr" aria-hidden="true">→</span></Link>
             </div>
-          </motion.div>
+          </div>
         </div>
       </section>
 

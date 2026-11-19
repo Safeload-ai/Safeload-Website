@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { motion, AnimatePresence } from 'framer-motion';
 import CTABand from '../components/CTABand';
 
 const SEGMENTS = [
@@ -95,39 +94,30 @@ export default function Solutions() {
             ))}
           </div>
 
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={idx}
-              initial={{ opacity: 0, y: 8 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.25 }}
-              style={{ display: 'flex', flexWrap: 'wrap', gap: 56, alignItems: 'flex-start', marginTop: 48 }}
-            >
-              <div style={{ flex: '1 1 460px', minWidth: 0 }}>
-                <div className="photo-placeholder">Photo &middot; {seg.photo}</div>
+          <div style={{ display: 'flex', flexWrap: 'wrap', gap: 56, alignItems: 'flex-start', marginTop: 48 }}>
+            <div style={{ flex: '1 1 460px', minWidth: 0 }}>
+              <div className="photo-placeholder">Photo &middot; {seg.photo}</div>
+            </div>
+            <div style={{ flex: '1 1 440px', minWidth: 0, display: 'flex', flexDirection: 'column', gap: 18 }}>
+              <span className="eyebrow accent">{seg.name}</span>
+              <h2 className="h-section">{seg.tag}</h2>
+              {seg.paras.map((p) => <p key={p} className="body-lg">{p}</p>)}
+              <div style={{ display: 'flex', flexDirection: 'column', gap: 4, paddingTop: 8 }}>
+                <span className="eyebrow">Outcomes</span>
+                <ol style={{ listStyle: 'none', margin: 0, padding: 0 }}>
+                  {seg.outcomes.map((o, i) => (
+                    <li key={o} style={{ display: 'flex', gap: 16, alignItems: 'baseline', padding: '14px 0', borderTop: '1px solid var(--line)' }}>
+                      <span className="section-num" style={{ marginBottom: 0, color: 'var(--brand-green)' }}>0{i + 1}</span>
+                      <span style={{ fontSize: 16, lineHeight: '24px' }}>{o}</span>
+                    </li>
+                  ))}
+                </ol>
               </div>
-              <div style={{ flex: '1 1 440px', minWidth: 0, display: 'flex', flexDirection: 'column', gap: 18 }}>
-                <span className="eyebrow accent">{seg.name}</span>
-                <h2 className="h-section">{seg.tag}</h2>
-                {seg.paras.map((p) => <p key={p} className="body-lg">{p}</p>)}
-                <div style={{ display: 'flex', flexDirection: 'column', gap: 4, paddingTop: 8 }}>
-                  <span className="eyebrow">Outcomes</span>
-                  <ol style={{ listStyle: 'none', margin: 0, padding: 0 }}>
-                    {seg.outcomes.map((o, i) => (
-                      <li key={o} style={{ display: 'flex', gap: 16, alignItems: 'baseline', padding: '14px 0', borderTop: '1px solid var(--line)' }}>
-                        <span className="section-num" style={{ marginBottom: 0, color: 'var(--brand-green)' }}>0{i + 1}</span>
-                        <span style={{ fontSize: 16, lineHeight: '24px' }}>{o}</span>
-                      </li>
-                    ))}
-                  </ol>
-                </div>
-                <div style={{ paddingTop: 8 }}>
-                  <Link to="/partners" className="btn btn-dark">{seg.cta} <span className="sl-arr" aria-hidden="true">→</span></Link>
-                </div>
+              <div style={{ paddingTop: 8 }}>
+                <Link to="/partners" className="btn btn-dark">{seg.cta} <span className="sl-arr" aria-hidden="true">→</span></Link>
               </div>
-            </motion.div>
-          </AnimatePresence>
+            </div>
+          </div>
         </div>
       </section>
 

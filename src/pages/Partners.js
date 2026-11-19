@@ -1,12 +1,4 @@
 import React, { useState } from 'react';
-import { motion } from 'framer-motion';
-
-const fadeUp = {
-  initial: { opacity: 0, y: 16 },
-  whileInView: { opacity: 1, y: 0 },
-  viewport: { once: true, amount: 0.3 },
-  transition: { duration: 0.5 },
-};
 
 const journey = [
   { step: '01', title: 'Identify the custody gap', desc: 'Understand where authorization, verification, or accountability breaks down in your workflow.' },
@@ -50,20 +42,20 @@ export default function Partners() {
 
       <section className="section">
         <div className="container">
-          <motion.div {...fadeUp} className="section-head">
+          <div className="section-head">
             <span className="section-num">01 &mdash; Pilot journey</span>
             <h2 className="h-section">How a pilot runs.</h2>
-          </motion.div>
+          </div>
 
           <div style={{ display: 'flex', flexDirection: 'column', gap: 1, background: 'var(--line)', border: '1px solid var(--line)' }}>
-            {journey.map((j, i) => (
-              <motion.div key={j.step} {...fadeUp} transition={{ ...fadeUp.transition, delay: i * 0.06 }} style={{ background: '#fff', padding: '22px 26px', display: 'flex', gap: 20, alignItems: 'flex-start' }}>
+            {journey.map((j) => (
+              <div key={j.step} style={{ background: '#fff', padding: '22px 26px', display: 'flex', gap: 20, alignItems: 'flex-start' }}>
                 <span className="section-num" style={{ marginBottom: 0, flexShrink: 0 }}>Step {j.step}</span>
                 <div>
                   <div style={{ fontSize: 16, fontWeight: 500, marginBottom: 4 }}>{j.title}</div>
                   <p className="body-md" style={{ fontSize: 13.5 }}>{j.desc}</p>
                 </div>
-              </motion.div>
+              </div>
             ))}
           </div>
         </div>
@@ -71,31 +63,31 @@ export default function Partners() {
 
       <section className="section subtle">
         <div className="container">
-          <motion.div {...fadeUp} className="section-head">
+          <div className="section-head">
             <span className="section-num">02 &mdash; Who we're looking for</span>
             <h2 className="h-section">Who we're looking for</h2>
             <p className="body-lg">
               Organizations with meaningful freight operations, recurring handoff challenges, or high-value shipments&mdash;and the willingness to collaborate on practical verification workflows.
             </p>
-          </motion.div>
+          </div>
         </div>
       </section>
 
       <section className="section" id="inquiry">
         <div className="container" style={{ maxWidth: 680 }}>
-          <motion.div {...fadeUp} className="section-head">
+          <div className="section-head">
             <span className="section-num">03 &mdash; Inquiry</span>
             <h2 className="h-section">Request a conversation</h2>
-          </motion.div>
+          </div>
 
           {submitted ? (
-            <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="card" style={{ textAlign: 'center' }}>
+            <div className="card" style={{ textAlign: 'center' }}>
               <h3 className="h-card" style={{ marginBottom: 8 }}>Request received</h3>
               <p className="body-md" style={{ marginBottom: 16 }}>We'll be in touch shortly.</p>
               <button type="button" className="btn btn-dark" onClick={() => { setForm(initialForm); setSubmitted(false); }}>
                 Send another inquiry
               </button>
-            </motion.div>
+            </div>
           ) : (
             <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: 20 }}>
               <p className="body-md" style={{ fontSize: 13 }}>Please complete the required fields below.</p>
