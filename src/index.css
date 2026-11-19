@@ -193,8 +193,7 @@ a.btn-outline, .btn-outline { background: transparent; color: var(--on-dark); bo
   border-bottom-color: var(--accent);
   padding-bottom: 20px;
 }
-.site-nav a.btn-light { color: var(--ink); padding: 12px 20px; }
-.site-nav a.btn-light:hover { color: var(--ink); }
+.nav-cta { flex-shrink: 0; }
 .nav-toggle { display: none; }
 
 @media (max-width: 860px) {
@@ -216,13 +215,15 @@ a.btn-outline, .btn-outline { background: transparent; color: var(--on-dark); bo
     gap: 0;
     padding-bottom: 12px;
   }
-  .site-header-inner .btn-light { display: none; }
-  .site-nav.open .btn-light { display: inline-flex; margin-top: 8px; }
+  .nav-cta { display: none; }
+  .site-nav.open + .nav-cta { display: inline-flex; margin-top: 8px; }
 }
 
 /* ─── Hero (dark, grid-pattern) ─────────────────────────────── */
 .hero-section {
-  position: relative;
+  position: sticky;
+  top: 0;
+  z-index: 0;
   background: var(--surface-dark);
   color: var(--on-dark);
   overflow: hidden;
@@ -250,6 +251,8 @@ a.btn-outline, .btn-outline { background: transparent; color: var(--on-dark); bo
 
 /* ─── Section / Card primitives ─────────────────────────────── */
 .section {
+  position: relative;
+  z-index: 1;
   background: var(--surface);
   border-bottom: 1px solid var(--line);
   padding: 96px 0;

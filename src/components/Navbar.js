@@ -42,10 +42,10 @@ export default function Navbar() {
               {label}
             </Link>
           ))}
-          <Link to="/partners" className="btn btn-light" onClick={() => setOpen(false)}>
-            Become a Design Partner <span className="sl-arr" aria-hidden="true">→</span>
-          </Link>
         </nav>
+        <Link to="/partners" className="btn btn-light nav-cta" onClick={() => setOpen(false)}>
+          Become a Design Partner <span className="sl-arr" aria-hidden="true">→</span>
+        </Link>
       </div>
     </header>
   );

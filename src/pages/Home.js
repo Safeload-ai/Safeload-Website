@@ -1,26 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { motion, AnimatePresence } from 'framer-motion';
 import CTABand from '../components/CTABand';
-
-const RECEDE_RANGE = 800;
-
-function useRecedeProgress() {
-  const [progress, setProgress] = useState(0);
-  useEffect(() => {
-    let ticking = false;
-    const onScroll = () => {
-      if (ticking) return;
-      ticking = true;
-      requestAnimationFrame(() => {
-        setProgress(Math.min(1, Math.max(0, window.scrollY / RECEDE_RANGE)));
-        ticking = false;
-      });
-    };
-    window.addEventListener('scroll', onScroll, { passive: true });
-    return () => window.removeEventListener('scroll', onScroll);
-  }, []);
-  return progress;
-}
 
 const statusLabels = [
   'Origin release verified',
@@ -128,7 +109,7 @@ const visionChain = ['Source', 'Produce', 'Store', 'Move', 'Receive'];
 
 function PhotoPlaceholder({ caption }) {
   return (
-    <div className="photo-placeholder">
+    <div className="photo-placeholder sl-thumb" style={{ width: '100%', height: '100%', aspectRatio: 'auto', border: 'none' }}>
       <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
         <rect x="3" y="7" width="18" height="13" stroke="#8f8f8f" strokeWidth="1.5" />
         <path d="M8 7l1.5-3h5L16 7" stroke="#8f8f8f" strokeWidth="1.5" />
@@ -140,21 +121,13 @@ function PhotoPlaceholder({ caption }) {
 }
 
 export default function Home() {
-  const recede = useRecedeProgress();
   const [gapTab, setGapTab] = useState('today');
 
   return (
     <>
       <section className="hero-section">
         <div className="hero-grid-bg" aria-hidden="true" />
-        <div
-          className="hero-inner"
-          style={{
-            alignItems: 'center',
-            position: 'relative',
-            transform: `translateY(${-48 * recede}px) scale(${1 - 0.03 * recede})`,
-          }}
-        >
+        <div className="hero-inner" style={{ alignItems: 'center', position: 'relative' }}>
           <div className="hero-copy" style={{ flex: '0 1 660px' }}>
             <div className="hero-eyebrow-row">
               <span className="sl-live" aria-hidden="true" />
@@ -253,15 +226,19 @@ export default function Home() {
             >With SafeLoad</button>
           </div>
 
-          <div role="tabpanel" style={{ border: '1px solid var(--line)', padding: 32 }}>
-            {gapTab === 'today' ? (
-              <div>
+          <div role="tabpanel" style={{ border: '1px solid var(--line)', padding: 32, overflow: 'hidden' }}>
+            <AnimatePresence mode="wait">
+              {gapTab === 'today' ? (
+                <motion.div key="today" initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }} transition={{ duration: 0.3 }}>
                 <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(170px, 1fr))', gap: 32 }}>
-                  {todaySteps.map((s) => (
-                    <div key={s.role} style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
-                      <div style={{ border: '1px solid #8f8f8f', padding: 16, display: 'flex', flexDirection: 'column', gap: 4, background: '#fff' }}>
+                  {todaySteps.map((s, i) => (
+                    <div key={s.role} style={{ position: 'relative', display: 'flex', flexDirection: 'column', gap: 12 }}>
+                      <div style={{ position: 'relative', border: '1px solid #8f8f8f', padding: 16, display: 'flex', flexDirection: 'column', gap: 4, background: '#fff' }}>
                         <span className="eyebrow">{s.role}</span>
                         <span style={{ fontSize: 20, lineHeight: '28px', fontWeight: 500 }}>{s.event}</span>
+                        {i < todaySteps.length - 1 && (
+                          <span aria-hidden="true" style={{ position: 'absolute', right: -33, top: 38, width: 32, height: 0, borderTop: '1px dashed #8f8f8f' }} />
+                        )}
                       </div>
                       <span style={{ alignSelf: 'flex-start', border: '1px dashed #8f8f8f', padding: '4px 8px', fontFamily: 'var(--font-mono)', fontSize: 12, color: 'var(--ink-muted)' }}>{s.detail}</span>
                     </div>
@@ -275,14 +252,22 @@ export default function Home() {
                   <span style={{ fontFamily: 'var(--font-mono)', fontSize: 12, fontWeight: 500, letterSpacing: '0.08em', textTransform: 'uppercase', color: '#8a5300' }}>Authorization gap</span>
                   <span style={{ fontSize: 14, color: 'var(--ink-muted)' }}>Evidence sits in separate systems.</span>
                 </div>
-              </div>
-            ) : (
-              <div>
+                </motion.div>
+              ) : (
+                <motion.div key="after" initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }} transition={{ duration: 0.3 }}>
                 <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(170px, 1fr))', gap: 32 }}>
-                  {safeloadSteps.map((s) => (
-                    <div key={s} style={{ border: '1px solid #000', padding: 16, display: 'flex', flexDirection: 'column', gap: 4, background: '#fff' }}>
-                      <span className="eyebrow">{s}</span>
-                      <span style={{ fontSize: 20, lineHeight: '28px', fontWeight: 500 }}>{{ Shipper: 'Order', Broker: 'Booking', Carrier: 'Movement', Receiver: 'Delivery' }[s]}</span>
+                  {safeloadSteps.map((s, i) => (
+                    <div key={s} style={{ position: 'relative', display: 'flex', flexDirection: 'column', gap: 12 }}>
+                      <div style={{ position: 'relative', border: '1px solid #000', padding: 16, display: 'flex', flexDirection: 'column', gap: 4, background: '#fff' }}>
+                        <span className="eyebrow">{s}</span>
+                        <span style={{ fontSize: 20, lineHeight: '28px', fontWeight: 500 }}>{{ Shipper: 'Order', Broker: 'Booking', Carrier: 'Movement', Receiver: 'Delivery' }[s]}</span>
+                        {i < safeloadSteps.length - 1 && (
+                          <span aria-hidden="true" style={{ position: 'absolute', right: -33, top: 38, width: 32, height: 0, borderTop: '1px solid #000' }} />
+                        )}
+                        <span aria-hidden="true" style={{ position: 'absolute', left: '50%', bottom: -33, width: 1, height: 32, background: '#000' }}>
+                          <span className="sl-drop" style={{ animationDelay: `${i * 0.4}s` }} />
+                        </span>
+                      </div>
                     </div>
                   ))}
                 </div>
@@ -293,8 +278,9 @@ export default function Home() {
                   </span>
                   <span style={{ fontFamily: 'var(--font-mono)', fontSize: 13, letterSpacing: '0.04em', color: '#d4d4d4' }}>Authorization &middot; Verification &middot; Evidence &middot; Exceptions &middot; Acceptance</span>
                 </div>
-              </div>
-            )}
+                </motion.div>
+              )}
+            </AnimatePresence>
           </div>
         </div>
       </section>
@@ -366,7 +352,7 @@ export default function Home() {
             <p className="body-lg">
               Guardian AI is being developed to investigate exceptions and support controlled decisions. Material changes remain subject to the authorization rules established by responsible parties.
             </p>
-            <Link to="/guardian-ai" className="eyebrow accent">How Guardian AI works <span className="sl-arr" aria-hidden="true">→</span></Link>
+            <Link to="/guardian-ai" style={{ fontSize: 14, fontWeight: 500, textDecoration: 'none', display: 'inline-flex', alignItems: 'center', gap: 6, padding: '12px 0', minHeight: 44, boxSizing: 'border-box' }}>How Guardian AI works <span className="sl-arr" aria-hidden="true">→</span></Link>
           </div>
 
           <div style={{ flex: '1 1 460px', minWidth: 0, display: 'flex', flexDirection: 'column', gap: 12 }}>
@@ -399,7 +385,14 @@ export default function Home() {
               <span style={{ fontFamily: 'var(--font-mono)', fontSize: 12, color: 'var(--on-dark-muted)' }}>Supports the decision. Does not make it.</span>
             </div>
 
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, minmax(0, 1fr))', gap: 16, marginTop: 8 }}>
+            <div aria-hidden="true" style={{ position: 'relative', height: 28 }}>
+              <span style={{ position: 'absolute', left: '50%', top: 0, width: 1, height: 14, background: '#000' }} />
+              <span style={{ position: 'absolute', left: '25%', right: '25%', top: 14, height: 1, background: '#000' }} />
+              <span style={{ position: 'absolute', left: '25%', top: 14, width: 1, height: 14, background: '#000' }} />
+              <span style={{ position: 'absolute', right: '25%', top: 14, width: 1, height: 14, background: '#000' }} />
+            </div>
+
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, minmax(0, 1fr))', gap: 16 }}>
               <div style={{ border: '1px solid #008000', borderTop: '3px solid #008000', padding: 16, display: 'flex', flexDirection: 'column', gap: 6, background: '#fff' }}>
                 <span style={{ display: 'inline-flex', alignItems: 'center', gap: 6, fontFamily: 'var(--font-mono)', fontSize: 12, fontWeight: 500, letterSpacing: '0.08em', textTransform: 'uppercase', color: '#008000' }}>
                   <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M2 6.5l2.5 2.5L10 3" stroke="#008000" strokeWidth="1.5" /></svg>
@@ -415,6 +408,7 @@ export default function Home() {
                 <span style={{ fontSize: 16, fontWeight: 500 }}>Hold + escalate</span>
               </div>
             </div>
+            <span style={{ fontFamily: 'var(--font-mono)', fontSize: 11, letterSpacing: '0.08em', textTransform: 'uppercase', color: 'var(--ink-muted)' }}>Illustrative workflow</span>
           </div>
         </div>
       </section>
@@ -438,7 +432,7 @@ export default function Home() {
                   <h3 style={{ margin: 0, fontSize: 24, lineHeight: '32px', fontWeight: 500 }}>{r.tag}</h3>
                   <p style={{ margin: 0, fontSize: 15, lineHeight: '22px', color: 'var(--ink-muted)' }}>{r.desc}</p>
                   <div style={{ marginTop: 'auto' }}>
-                    <Link to="/solutions" className="eyebrow accent">{r.cta} <span className="sl-arr" aria-hidden="true">→</span></Link>
+                    <Link to="/solutions" style={{ fontSize: 14, fontWeight: 500, textDecoration: 'none', display: 'inline-flex', alignItems: 'center', gap: 6, padding: '12px 0', minHeight: 44, boxSizing: 'border-box' }}>{r.cta} <span className="sl-arr" aria-hidden="true">→</span></Link>
                   </div>
                 </div>
               </div>
