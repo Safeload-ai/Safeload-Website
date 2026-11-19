@@ -1,52 +1,52 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { motion } from 'framer-motion';
 
 const navLinks = [
-  { label: 'Home', to: '/' },
-  { label: 'About Us', to: '/about' },
-  { label: 'Our Solution', to: '/solution' },
+  { label: 'Platform', to: '/platform' },
+  { label: 'How It Works', to: '/how-it-works' },
+  { label: 'Solutions', to: '/solutions' },
+  { label: 'Guardian AI', to: '/guardian-ai' },
+  { label: 'Design Partners', to: '/partners' },
 ];
 
 export default function Navbar() {
-  const [scrolled, setScrolled] = useState(false);
   const { pathname } = useLocation();
-
-  useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 24);
-    window.addEventListener('scroll', onScroll, { passive: true });
-    return () => window.removeEventListener('scroll', onScroll);
-  }, []);
+  const [open, setOpen] = useState(false);
 
   return (
-    <motion.nav
-      className={`navbar${scrolled ? ' scrolled' : ''}`}
-      initial={{ opacity: 0, y: -16 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.5, ease: 'easeOut' }}
-    >
-      <div className="container navbar-inner">
-        <Link to="/" className="logo">
-          <img src="/safeload-lockup-reversed.svg" alt="SafeLoad AI" className="logo-img" />
+    <header className="site-header">
+      <div className="site-header-inner">
+        <Link to="/" className="site-logo" aria-label="SafeLoad AI home">
+          <img src="/safeload-lockup-reversed.svg" alt="SafeLoad" />
         </Link>
 
-        <nav className="nav-links">
+        <button
+          type="button"
+          className="nav-toggle"
+          aria-expanded={open}
+          aria-label="Toggle navigation"
+          onClick={() => setOpen((o) => !o)}
+        >
+          Menu
+        </button>
+
+        <nav className={`site-nav${open ? ' open' : ''}`} aria-label="Primary">
           {navLinks.map(({ label, to }) => (
             <Link
               key={to}
               to={to}
-              className={`nav-link${pathname === to ? ' active' : ''}`}
+              className={pathname === to ? 'active' : ''}
+              aria-current={pathname === to ? 'page' : undefined}
+              onClick={() => setOpen(false)}
             >
               {label}
             </Link>
           ))}
-          <motion.div whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }}>
-            <Link to="/join" className="btn-primary">
-              Join Pilot Program
-            </Link>
-          </motion.div>
+          <Link to="/partners" className="btn btn-light" onClick={() => setOpen(false)}>
+            Become a Design Partner <span className="sl-arr" aria-hidden="true">→</span>
+          </Link>
         </nav>
       </div>
-    </motion.nav>
+    </header>
   );
 }
